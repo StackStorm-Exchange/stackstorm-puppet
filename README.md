@@ -4,7 +4,7 @@ This intgeration pack allows for integration with [Puppet](http://puppetlabs.com
 
 ## Actions
 
-Currently, the actions listed bellow are supported:
+These actions are supported:
 
 ### Core
 

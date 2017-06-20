@@ -54,3 +54,7 @@ You can also use dynamic values from the datastore. See the
 
 Remote actions require no configuration. You simply need to specify server to
 run the action on when running the action (same as with other remote actions).
+
+**Note** : When modifying the configuration in `/opt/stackstorm/configs/` please
+           remember to tell StackStorm to load these new values by running
+           `st2ctl reload --register-configs`

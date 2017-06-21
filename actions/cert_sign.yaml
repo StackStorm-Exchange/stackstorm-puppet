@@ -1,6 +1,6 @@
 ---
 name: cert_sign
-runner_type: run-python
+runner_type: python-script
 description: Sign an outstanding certificate request.
 enabled: true
 entry_point: cert_sign.py

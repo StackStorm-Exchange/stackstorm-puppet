@@ -1,6 +1,6 @@
 ---
 name: cert_revoke
-runner_type: run-python
+runner_type: python-script
 description: Revoke the certificate of a client.
 enabled: true
 entry_point: cert_revoke.py

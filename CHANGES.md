@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.3.0
+
+- Updated action `runner_type` from `run-python` to `python-script`
+
 ## v0.2.0
 
 **BREAKING CHANGE**

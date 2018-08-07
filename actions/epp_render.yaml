@@ -3,7 +3,7 @@ name: epp_render
 runner_type: local-shell-script
 description: Renders an EPP template on the local host.
 enabled: true
-entry_point: lookup.py
+entry_point: epp_render.py
 parameters:
   ################ begin puppet common params
   puppet_cmd:

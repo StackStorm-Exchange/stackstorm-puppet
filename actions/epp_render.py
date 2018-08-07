@@ -47,13 +47,13 @@ class PuppetEppRenderAction(PuppetBaseAction):
         if node:
             args += ['--node={}'.format(node)]
         if values:
-            args += ['--values'] + [self.json_to_puppet_dsl(eval(values))]
+            args += ['--values'] + [self.to_puppet_dsl(eval(values))]
         if values_file:
             args += ['--values_file={}'.format(values_file)]
 
         # add our list of templates
         args += eval(templates)
-        cmd = self._get_full_command(args=(args + [key]),
+        cmd = self._get_full_command(args=args,
                                      puppet_cmd=puppet_cmd)
         exit_code, stdout, stderr = self._run_command(cmd=cmd,
                                                       env=env,

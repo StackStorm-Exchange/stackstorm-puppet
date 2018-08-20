@@ -1,7 +1,7 @@
 ---
 name: epp_render_remote
 runner_type: remote-shell-script
-description: Renders an EPP template on the local host.
+description: Renders an EPP template on a remote host (must have Puppet installed).
 enabled: true
 entry_point: epp_render.py
 parameters:

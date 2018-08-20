@@ -1,7 +1,7 @@
 ---
 name: lookup_remote
 runner_type: remote-shell-script
-description: Does a Hiera lookup on a remote host.
+description: Does a Hiera lookup on a remote host (must have Puppet installed).
 enabled: true
 entry_point: lookup.py
 parameters:

@@ -10,6 +10,8 @@ These actions are supported:
 
 * Applying a standalone manifest to a local system - `apply`
 * Run puppet agent - `run_agent`
+* Rendering an [EPP template](https://puppet.com/docs/puppet/latest/lang_template_epp.html) - `epp_render`
+* Looking up data in [Hiera](https://puppet.com/docs/puppet/latest/hiera_intro.html) - `lookup`
 
 ### Certificate Management
 

@@ -17,7 +17,7 @@ __all__ = [
 class PuppetEppRenderAction(PuppetBaseAction):
 
     def to_puppet_dsl(self, data):
-        return json.dumps(data, separators=(',','=>'))
+        return json.dumps(data, separators=(',', '=>'))
 
     def run(self, env=None, cwd=None, puppet_cmd=None, settings=None,
             render_as=None, debug_=None, verbose=None, expression=None,

@@ -1,0 +1,85 @@
+---
+name: epp_render
+runner_type: local-shell-script
+description: Renders an EPP template on the local host.
+enabled: true
+entry_point: epp_render.py
+parameters:
+  ################ begin puppet common params
+  puppet_cmd:
+    type: string
+    description: >
+      Command (or full path) to invoke puppet agent
+    default: "/opt/puppetlabs/bin/puppet"
+  settings:
+    type: object
+    description: >
+      Dict of Puppet configuraiton settings. Each key/value pair will be translated into
+      a CLI argument and passed into the puppet command. See below for a list of
+      available settings:
+      https://puppet.com/docs/puppet/latest/configuration.html
+
+      Example:
+        settings:
+          confdir: /home/user/custom/puppet
+          modulepath: "/tmp/modules:/opt/modules"
+  ################ end puppet common params
+  render_as:
+    type: string
+    description: >
+      The format in which to render output. The most common formats are json, s (string),
+      yaml, and console, but other options such as dot are sometimes available.
+  verbose:
+    type: boolean
+    default: false
+    description: >
+      Whether to log verbosely.
+  debug_:
+    type: boolean
+    description: "Whether to log debug information."
+  expression:
+    type: string
+    description: >
+      Render one inline epp template given as input.
+  facts:
+    type: string
+    description: >
+      A .yaml or .json file containing a hash of facts made available in $facts and $trusted
+  header:
+    type: boolean
+    description: >
+      Whether or not to show a file name header between rendered results.
+  node:
+    type: string
+    description: >
+      The name of the node for which facts are obtained. Defaults to facts for the local node.
+  values:
+    type: object
+    description: >
+      A Hash in Puppet DSL form given as arguments to the template being rendered.
+  values_file:
+    type: string
+    description: >
+      A .pp or .yaml file that is processed to produce a hash of values for the template
+  templates:
+    type: array
+    items:
+      type: string
+    position: 0
+    description: >
+      This action renders one or more EPP templates.
+
+      The command accepts one or more templates (.epp files), given the same way as
+      templates are given to the puppet epp function (a full path, or a relative reference
+      on the form 'modulename/template-name.epp'), or as a relative path.args In case the
+      given path matches both a modulename/template and a file, the template from the module
+      is used.
+      
+      If multiple templates are given, the same set of values are given to each template.
+      If both --values and --value_file are used, the --values are merged on top of those
+      given in the file.
+
+      When multiple templates are rendered, a separating header is output between the templates
+      showing the name of the template before the output. The header output can be turned off
+      with --no-header. This also concatenates the template results without any added newline
+      separators.

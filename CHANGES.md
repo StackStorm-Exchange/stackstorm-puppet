@@ -1,5 +1,11 @@
 # Changelog
 
+# 0.3.2
+
+- Added new actions `puppet.lookup`, `puppet.lookup_remote`, `puppet.epp_render` and `puppet.epp_render_remote`.
+
+  Contributed by Nick Maludy (Encore Technologies)
+
 # 0.3.0
 
 - Updated action `runner_type` from `run-python` to `python-script`

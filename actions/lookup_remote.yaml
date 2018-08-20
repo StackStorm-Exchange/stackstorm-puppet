@@ -1,0 +1,120 @@
+---
+name: lookup_remote
+runner_type: remote-shell-script
+description: Does a Hiera lookup on a remote host (must have Puppet installed).
+enabled: true
+entry_point: lookup.py
+parameters:
+  puppet_cmd:
+    type: string
+    description: >
+      Command (or full path) to invoke puppet agent
+    default: "/opt/puppetlabs/bin/puppet"
+  settings:
+    type: object
+    description: >
+      Dict of Puppet configuraiton settings. Each key/value pair will be translated into
+      a CLI argument and passed into the puppet command. See below for a list of
+      available settings:
+      https://puppet.com/docs/puppet/latest/configuration.html
+
+      Example:
+        settings:
+          confdir: /home/user/custom/puppet
+          modulepath: "/tmp/modules:/opt/modules"
+  explain:
+    type: boolean
+    required: false
+    description: >
+      Explain the details of how the lookup was performed and where the final value
+      came from (or the reason no value was found).
+  node:
+    type: string
+    description: >
+      Specify which node to look up data for; defaults to the node where the command
+      is run. Since Hiera's purpose is to provide different values for different
+      nodes (usually based on their facts), you'll usually want to use some specific
+      node's facts to explore your data. If the node where you're running this
+      command is configured to talk to PuppetDB, the command will use the requested
+      node's most recent facts. Otherwise, you can override facts with the '--facts'
+      option.
+  facts:
+    type: string
+    description: >
+      Specify a .json or .yaml file of key => value mappings to override the facts
+      for this lookup. Any facts not specified in this file maintain their
+      original value.
+  environment:
+    type: string
+    description: >
+      Like with most Puppet commands, you can specify an environment on the command
+      line. This is important for lookup because different environments can have
+      different Hiera data.
+  merge:
+    type: string
+    description: >
+      first|unique|hash|deep
+      
+      Specify the merge behavior, overriding any merge behavior from the data's
+      lookup_options. 'first' returns the first value found. 'unique' appends
+      everything to a merged, deduplicated array. 'hash' performs a simple hash
+      merge by overwriting keys of lower lookup priority. 'deep' performs a deep
+      merge on values of Array and Hash type. There are additional options that can
+      be used with 'deep'.
+  knock_out_prefix:
+    type: string
+    description: >
+      Can be used with the 'deep' merge strategy. Specifies a prefix to indicate a
+      value should be removed from the final result.
+  sort_merged_arrays:
+    type: boolean
+    default: false
+    description: >
+      Can be used with the 'deep' merge strategy. When this flag is used, all
+      merged arrays are sorted.
+  merge_hash_arrays:
+    type: boolean
+    default: false
+    description: >
+      Can be used with the 'deep' merge strategy. When this flag is used, hashes
+      WITHIN arrays are deep-merged with their counterparts by position.
+  explain_options:
+    type: boolean
+    default: false
+    description: >
+      Explain whether a lookup_options hash affects this lookup, and how that hash
+      was assembled. (lookup_options is how Hiera configures merge behavior in data.)
+  default:
+    type: string
+    description: >
+      A value to return if Hiera can't find a value in data. For emulating calls to
+      the 'lookup()' function that include a default.
+  type:
+    type: string
+    description: >
+      Assert that the value has the specified type. For emulating calls to the
+      'lookup()' function that include a data type.
+  compile:
+    type: boolean
+    default: false
+    description: >
+      Perform a full catalog compilation prior to the lookup. If your hierarchy and
+      data only use the $facts, $trusted, and $server_facts variables, you don't
+      need this option; however, if your Hiera configuration uses arbitrary
+      variables set by a Puppet manifest, you might need this option to get accurate
+      data. No catalog compilation takes place unless this flag is given.
+  render_as:
+    type: string
+    description: >
+      s|json|yaml|binary|msgpack
+      
+      Specify the output format of the results; "s" means plain text. The default
+      when producing a value is yaml and the default when producing an explanation
+      is s.
+    default: json
+  keys:
+    type: array
+    position: 0
+    description: >
+      Key names to lookup
+      

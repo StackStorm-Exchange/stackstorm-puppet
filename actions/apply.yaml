@@ -1,6 +1,6 @@
 ---
 name: apply
-runner_type: run-remote-script
+runner_type: remote-shell-script
 description: Apply a standalone puppet manifest to a local system.
 enabled: true
 entry_point: apply.py

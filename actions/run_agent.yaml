@@ -1,6 +1,6 @@
 ---
 name: run_agent
-runner_type: run-remote-script
+runner_type: remote-shell-script
 description: Run puppet agent.
 enabled: true
 entry_point: run_agent.py

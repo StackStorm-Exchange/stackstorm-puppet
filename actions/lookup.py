@@ -3,8 +3,8 @@
 import argparse
 import json
 import os
-import six
 import sys
+import six
 
 
 from lib.remote_actions import PuppetBaseAction

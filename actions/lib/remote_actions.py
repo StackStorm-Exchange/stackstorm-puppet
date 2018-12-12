@@ -22,8 +22,7 @@ class PuppetBaseAction(object):
         if handle_result:
             return self._handle_command_result(exit_code=exit_code, stdout=stdout,
                                                stderr=stderr)
-        else:
-            return exit_code, stdout, stderr
+        return exit_code, stdout, stderr
 
     def _get_full_command(self, args, puppet_cmd=None):
         if not puppet_cmd:

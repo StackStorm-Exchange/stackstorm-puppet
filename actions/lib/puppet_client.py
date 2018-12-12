@@ -1,6 +1,5 @@
 import json
 import copy
-import httplib
 
 import requests
 
@@ -64,7 +63,7 @@ class PuppetHTTPAPIClient(object):
         method = 'PUT'
         payload = {'desired_state': 'signed'}
         response = self._request(path=path, method=method, payload=payload)
-        return response.status_code in [httplib.OK]
+        return response.status_code in [requests.codes.ok]  # pylint: disable=no-member
 
     def cert_revoke(self, environment, host):
         """
@@ -80,7 +79,7 @@ class PuppetHTTPAPIClient(object):
         method = 'PUT'
         payload = {'desired_state': 'revoked'}
         response = self._request(path=path, method=method, payload=payload)
-        return response.status_code in [httplib.OK]
+        return response.status_code in [requests.codes.ok]  # pylint: disable=no-member
 
     def cert_clean(self, environment, host):
         """
@@ -111,7 +110,7 @@ class PuppetHTTPAPIClient(object):
         path = '/%s/certificate_status/%s/' % (environment, host)
         method = 'DELETE'
         response = self._request(path=path, method=method)
-        return response.status_code in [httplib.OK]
+        return response.status_code in [requests.codes.ok]  # pylint: disable=no-member
 
     def _request(self, path, method='GET', headers=None, payload=None):
         url = self._base_url + path

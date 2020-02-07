@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.4.1
+
+- Add explicit support for Python 2 and 3
+
 # 0.4.0
 
 - Bump allowed requests version, remove httplib, minor linting-related changes
